@@ -50,7 +50,7 @@ local open_chat = function()
   end
   local function display_total_tokens()
     local total_tokens = chat:get_total_tokens()
-    display_input_suffix("TOKENS: " .. total_tokens .. " / PRICE: $" .. Tokens.usage_in_dollars(total_tokens))
+    display_input_suffix("$" .. Tokens.usage_in_dollars(total_tokens))
   end
 
   local scroll_chat = function(direction)

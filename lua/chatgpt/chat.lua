@@ -205,7 +205,7 @@ function Chat:renderLastMessage()
 
     pcall(vim.fn.sign_place, 0, "chatgpt_ns", "chatgpt_question_sign", self.bufnr, { lnum = msg.start_line + 1 })
   else
-    local total_tokens = msg.usage.total_tokens
+    local total_tokens = nil
     if total_tokens ~= nil then
       vim.api.nvim_buf_set_extmark(self.bufnr, Config.namespace_id, msg.end_line + 1, 0, {
         virt_text = {
