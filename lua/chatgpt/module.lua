@@ -277,9 +277,10 @@ local open_chat = function()
 end
 
 M.openChat = function()
-  local chat, _, _, display_total_tokens = open_chat()
+  local chat, chat_input, chat_window, display_total_tokens = open_chat()
   chat:welcome()
   display_total_tokens()
+  return chat, chat_input, chat_window, display_total_tokens
 end
 
 M.open_chat_with_awesome_prompt = function()
