@@ -221,7 +221,8 @@ function Chat:renderLastMessage()
       })
     end
 
-    Signs.set_for_lines(self.bufnr, msg.start_line, msg.end_line + 1, "chat")
+    Signs.set_for_lines(self.bufnr, msg.start_line, msg.end_line, "chat")
+    pcall(vim.fn.sign_place, 0, "chatgpt_ns", "chatgpt_chat_no_block", self.bufnr, { lnum = msg.end_line + 2 })
   end
 
   if self.selectedIndex > 2 then
