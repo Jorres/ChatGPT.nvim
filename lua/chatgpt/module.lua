@@ -43,7 +43,7 @@ local open_chat = function()
         { "", "ChatGPTTotalTokensBorder" },
         { "" .. suffix, "ChatGPTTotalTokens" },
         { "", "ChatGPTTotalTokensBorder" },
-        { " ", "" },
+        { " ", "Normal" },
       },
       virt_text_pos = "right_align",
     })

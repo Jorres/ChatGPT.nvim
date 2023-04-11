@@ -192,7 +192,7 @@ function Chat:renderLastMessage()
   end
   table.insert(lines, "")
   if msg.type == ANSWER then
-    table.insert(lines, "")
+    table.insert(lines, "---")
   end
 
   local startIdx = self.selectedIndex == 1 and 0 or -2
