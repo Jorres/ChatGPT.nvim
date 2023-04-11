@@ -192,7 +192,7 @@ function Chat:renderLastMessage()
   end
   table.insert(lines, "")
   if msg.type == ANSWER then
-    table.insert(lines, "---")
+    table.insert(lines, "")
   end
 
   local startIdx = self.selectedIndex == 1 and 0 or -2
@@ -221,7 +221,7 @@ function Chat:renderLastMessage()
       })
     end
 
-    Signs.set_for_lines(self.bufnr, msg.start_line, msg.end_line, "chat")
+    Signs.set_for_lines(self.bufnr, msg.start_line, msg.end_line + 1, "chat")
   end
 
   if self.selectedIndex > 2 then
