@@ -188,7 +188,7 @@ function Chat:renderLastMessage()
 
   local lines = {}
   for w in string.gmatch(msg.text, "[^\r\n]+") do
-    if w[1] == ' ' and w[2] ~= ' ' then
+    if string.sub(w, 1, 1) == ' ' and string.sub(w, 2, 2) ~= ' ' then
       w = string.gsub(w, "^%s*(.-)$", "%1")
     end
     table.insert(lines, w)
