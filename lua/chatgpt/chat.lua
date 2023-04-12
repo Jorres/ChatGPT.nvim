@@ -188,7 +188,8 @@ function Chat:renderLastMessage()
 
   local lines = {}
   for w in string.gmatch(msg.text, "[^\r\n]+") do
-    table.insert(lines, w)
+    local trimmed = string.gsub(w, "^%s*(.-)%s*$", "%1")
+    table.insert(lines, trimmed)
   end
   table.insert(lines, "")
   if msg.type == ANSWER then
@@ -215,7 +216,7 @@ function Chat:renderLastMessage()
             "ChatGPTTotalTokens",
           },
           { "", "ChatGPTTotalTokensBorder" },
-          { " ", "" },
+          { " ",   "" },
         },
         virt_text_pos = "right_align",
       })
