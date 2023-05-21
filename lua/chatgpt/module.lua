@@ -20,8 +20,6 @@ local Utils = require("chatgpt.utils")
 
 local namespace_id = vim.api.nvim_create_namespace("ChatGPTNS")
 
-local last_prompt = {}
-
 local prompt_lines = 1
 local extmark_id = nil
 local virt_text_len = 0
@@ -75,7 +73,6 @@ local open_chat = function()
   chat_input = ChatInput(Config.options.popup_input, {
     prompt = Config.options.popup_input.prompt,
     on_close = function()
-      last_prompt = vim.api.nvim_buf_get_lines(chat_input.bufnr, 0, -1, false)
       chat:close()
       Api.close()
       layout:unmount()
@@ -113,9 +110,11 @@ local open_chat = function()
         end
       end
     end),
+
     on_submit = vim.schedule_wrap(function(value)
-      -- clear input
+      vim.api.nvim_command("stopinsert")
       vim.api.nvim_buf_set_lines(chat_input.bufnr, 0, -1, false, { "" })
+      vim.api.nvim_set_current_win(chat_window.winid)
 
       if chat:isBusy() then
         vim.notify("I'm busy, please wait a moment...", vim.log.levels.WARN)
@@ -132,8 +131,6 @@ local open_chat = function()
       end)
     end),
   })
-
-  vim.api.nvim_buf_set_lines(chat_input.bufnr, 0, -1, false, last_prompt)
 
   layout = Layout(
     Config.options.popup_layout,
